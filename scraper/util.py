@@ -219,14 +219,14 @@ def compute_labor_hours(sloc, month_hours="cocomo_book"):
 
 
 def labor_hours_from_url(url):
-    # sum_sloc = git_repo_to_sloc(url)
-    # logger.info("SLOC: %d", sum_sloc)
+    sum_sloc = git_repo_to_sloc(url)
+    logger.info("SLOC: %d", sum_sloc)
     #
-    # labor_hours = compute_labor_hours(sum_sloc)
-    # logger.info("labor_hours: %d", labor_hours)
+    labor_hours = compute_labor_hours(sum_sloc)
+    logger.info("labor_hours: %d", labor_hours)
     #
-    # return labor_hours
-    return 0
+    return labor_hours
+    # return 0
 
 
 def _prune_dict_null_str(dictionary):

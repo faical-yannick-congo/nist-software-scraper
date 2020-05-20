@@ -3,6 +3,7 @@
 
 import json
 import logging
+import time
 
 from dateutil.parser import parse as date_parse
 from requests.utils import requote_uri
@@ -221,7 +222,13 @@ class Project(dict):
         repository.session.headers[
             "Accept"
         ] = "application/vnd.github.mercy-preview+json"
-        topics = repository._get(repository.url + "/topics").json()
+        while True:
+            try:
+                topics = repository._get(repository.url + "/topics").json()
+                break
+            except Exception as e:
+                print(e)
+                time.sleep(2)
         project["tags"].extend(topics.get("names", []))
         repository.session.headers["Accept"] = old_accept
 
